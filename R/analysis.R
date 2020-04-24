@@ -88,6 +88,15 @@ colnames(df)[31] <- 'wage_above_std'
 colnames(df)[32] <- 'cal_OT_percent'
 colnames(df)[33] <- 'cal_wage_vs_std'
 
+### basic plots with column name change
+# manager and dept_wage
+ggplot(df, aes(x=manager, y=dept_wage)) + geom_bar(stat = 'identity')
+
+# filter  Kimchi Production line, visualizat total production by date
+df %>%
+    filter(line=='8/10 กิมจิ')%>%
+    ggplot(aes(x=date, y=prod_total_kg))  + geom_bar(stat = 'identity')
+
 
 
 
