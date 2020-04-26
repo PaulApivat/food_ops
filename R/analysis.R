@@ -97,6 +97,12 @@ df %>%
     filter(line=='8/10 กิมจิ')%>%
     ggplot(aes(x=date, y=prod_total_kg))  + geom_bar(stat = 'identity')
 
+# re-name line, manager, 
 
+# create two new columns after line and manager
+df2 <- df
 
+# insert column using tibble package (add_column()) 
+df2 <- add_column(df2, line2 = NA, .after = "manager")
+df2 <- add_column(df2, manager2 = NA, .after = "line2")
 
