@@ -106,3 +106,10 @@ df2 <- df
 df2 <- add_column(df2, line2 = NA, .after = "manager")
 df2 <- add_column(df2, manager2 = NA, .after = "line2")
 
+# change thai to english conditionally
+# note: both columns have to be the same data type
+# note: had to convert NA as logical to character first
+df2$line2 <- as.character(df2$line2)
+
+df2$line2 = ifelse(df$line=='8/10 กิมจิ', '8/10 kimchi', df2$line2)
+
