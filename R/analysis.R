@@ -241,3 +241,92 @@ df2 %>%
     + geom_bar(stat = 'identity') 
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
+##### change factory from character to factor
+df2$factory <- as.factor(df2$factory)
+
+## reorder sum_prod_total_kg AND fill = factory
+df2 %>% 
+    # important: to group_by factory as well otherwise, fill doesn't work
+    group_by(line2, factory) %>% 
+    summarize(sum_prod_total_kg = sum(prod_total_kg, na.rm = TRUE)) %>% 
+    ggplot(aes(x=reorder(line2, sum_prod_total_kg), y=sum_prod_total_kg, fill = factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+##### Summary Bar Chart in Patchwork ######
+### cover: OT_percent, std_wage_per_prod, actual_wage_per_prod, wage_below_std, 
+### wage_above_std, cal_OT_percent, cal_wage_vs_std
+
+library(patchwork)
+
+OT_percent_by_line2 <- df2 %>% 
+                        group_by(line2, factory) %>% 
+                        summarize(sum_OT_percent = sum(OT_percent, na.rm = TRUE)) %>% 
+                        ggplot(aes(x=reorder(line2, sum_OT_percent), y=sum_OT_percent, fill = factory)) 
+                        + geom_bar(stat = 'identity') 
+                        + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+std_wage_per_prod_by_line2 <- df2 %>% 
+                            group_by(line2, factory) %>% 
+                            summarize(sum_std_wage_per_prod = sum(std_wage_per_prod, na.rm = TRUE)) %>% 
+                            ggplot(aes(x=reorder(line2, sum_std_wage_per_prod), y=sum_std_wage_per_prod, fill = factory)) 
+                            + geom_bar(stat = 'identity') 
+                            + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+actual_wage_per_prod_by_line2 <- df2 %>% 
+                                group_by(line2, factory) %>% 
+                                summarize(sum_actual_wage_per_prod = sum(actual_wage_per_prod, na.rm = TRUE)) %>% 
+                                ggplot(aes(x=reorder(line2, sum_actual_wage_per_prod), y=sum_actual_wage_per_prod, fill = factory)) 
+                                + geom_bar(stat = 'identity') 
+                                + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+wage_below_std_by_line2 <- df2 %>% 
+                        group_by(line2, factory) %>% 
+                        summarize(sum_wage_below_std = sum(wage_below_std, na.rm = TRUE)) %>% 
+                        ggplot(aes(x=reorder(line2, sum_wage_below_std), y=sum_wage_below_std, fill = factory)) 
+                        + geom_bar(stat = 'identity') 
+                        + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+wage_above_std_by_line2 <- df2 %>% 
+                    group_by(line2, factory) %>% 
+                    summarize(sum_wage_above_std = sum(wage_above_std, na.rm = TRUE)) %>% 
+                    ggplot(aes(x=reorder(line2, sum_wage_above_std), y=sum_wage_above_std, fill = factory)) 
+                    + geom_bar(stat = 'identity') 
+                    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+# cal_OT_percent
+# percentages (i.e., "98.94%") presented as character, need to change type
+# use parse_number() from readr package
+
+cal_OT_percent_by_line2 <- df2 %>% 
+                    group_by(line2, factory) %>% 
+                    # important: use parse_number() here
+                    summarize(sum_cal_OT_percent = sum(parse_number(cal_OT_percent), na.rm = TRUE)) %>% 
+                    ggplot(aes(x=reorder(line2, sum_cal_OT_percent), y=sum_cal_OT_percent, fill = factory)) 
+                    + geom_bar(stat = 'identity') 
+                    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+cal_wage_vs_std_by_line2 <- df2 %>% 
+                    group_by(line2, factory) %>% 
+                    summarize(sum_cal_wage_vs_std = sum(cal_wage_vs_std, na.rm = TRUE)) %>% 
+                    ggplot(aes(x=reorder(line2, sum_cal_wage_vs_std), y=sum_cal_wage_vs_std, fill = factory)) 
+                    + geom_bar(stat = 'identity') 
+                    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+### Patchwork line up
+## seven plot, 3 column
+
+OT_percent_by_line2 
++ std_wage_per_prod_by_line2 
++ actual_wage_per_prod_by_line2 
++ wage_below_std_by_line2 
++ wage_above_std_by_line2 
++ cal_OT_percent_by_line2 
++ cal_wage_vs_std_by_line2 
++ plot_layout(ncol = 3)
+
