@@ -164,7 +164,9 @@ View(dplyr::filter(df2, grepl("KW3", line2)))
 ## Filter out(!) "KW3" in column line2
 View(dplyr::filter(df2, !grepl("KW3", line2)))
 
-
+## Filter for "jaloowun" in column manager2
+# note: 'jaloowun' is paired with several managers
+View(dplyr::filter(df2, grepl("jaloowun", manager2)))
 
 
 
