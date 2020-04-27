@@ -130,6 +130,15 @@ df2$line2 = ifelse(df2$line=='4/10 TV Dinner+ BBQ', '4/10 TV Dinner BBQ', df2$li
 df2$line2 = ifelse(df2$line=='KW3 1/8ข้าวกล่อง ห้องเตรียมวัตถุดิบ ส่วนผสม', 'KW3 1/8 rice raw material ingredients', df2$line2)
 df2$line2 = ifelse(df2$line=='10/10 เบ็ดเตล็ด K1', '10/10 misc K1', df2$line2)
 
+#### Filter using dplyr::filter and grepl
+
+## Filter for "KW3" in column line2
+View(dplyr::filter(df2, grepl("KW3", line2)))
+
+## Filter out(!) "KW3" in column line2
+View(dplyr::filter(df2, !grepl("KW3", line2)))
+
+
 
 
 
