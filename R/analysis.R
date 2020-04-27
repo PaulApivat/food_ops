@@ -110,7 +110,9 @@ df2 <- add_column(df2, manager2 = NA, .after = "line2")
 # note: both columns have to be the same data type
 # note: had to convert NA as logical to character first
 df2$line2 <- as.character(df2$line2)
+df2$manager2 <- as.character(df2$manager2)
 
+# change thai to eng line2
 df2$line2 = ifelse(df2$line=='8/10 กิมจิ', '8/10 kimchi', df2$line2)
 df2$line2 = ifelse(df2$line=='9/10 ผลไม้', '9/10 fruit', df2$line2)
 df2$line2 = ifelse(df2$line=='2/10 ข้าวปั้น', '2/10 onikiri', df2$line2)
@@ -129,6 +131,30 @@ df2$line2 = ifelse(df2$line=='1/10 เตรียมวัตถุดิบ �
 df2$line2 = ifelse(df2$line=='4/10 TV Dinner+ BBQ', '4/10 TV Dinner BBQ', df2$line2)
 df2$line2 = ifelse(df2$line=='KW3 1/8ข้าวกล่อง ห้องเตรียมวัตถุดิบ ส่วนผสม', 'KW3 1/8 rice raw material ingredients', df2$line2)
 df2$line2 = ifelse(df2$line=='10/10 เบ็ดเตล็ด K1', '10/10 misc K1', df2$line2)
+
+# change thai to eng manager2
+df2$manager2 = ifelse(df2$manager=='สมพร  (แหว๋ว)  /เด่นดาว (ดาว)', 'somporn', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='ปภาวี  (ปาล์ม)', 'baphawee', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='ลาวัลย์', 'lawun', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='วรรณา(นา)', 'wuna', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='จำปี (หมู)/จารุวรรณ  (จอย)', 'jumbhee / jaloowun', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='อุบลรัตน์ (รัตน์)/จารุวรรณ  (จอย)', 'ubonrhat / jaloowun', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='ปรางทอง  (แต)', 'pla-thong', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='สมจิตต์ (ติ๊ดตี่ --กะกลางวัน)  +  ชบาไพร (แจ๋ว-- กะกลางคืน)', 'somjit / shabapai', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='ประทีป  (โต้ง)/ สุพิศ', 'prateep / supit', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='กนกรัตน์ (ตุ๊ก)/จารุวรรณ  (จอย)', 'kranokrhat / jaloowun', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='สุรีรัตน์ (เปี๊ยก)', 'sulirhat', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='ทองสุข', 'thongsuk', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='ศรีรุธ ( จิ๋ม)', 'srilut', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='สุธีรา (แจง)/จารุวรรณ  (จอย)', 'sutheera / jaloowun', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='ศรีวรรณ (แขก)', 'sriwan', df2$manager2)
+df2$manager2 = ifelse(df2$manager=='กัญญารัตน์ (แมว)', 'kanyarat', df2$manager2)
+
+
+
+
+
+
 
 #### Filter using dplyr::filter and grepl
 
