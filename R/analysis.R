@@ -183,8 +183,8 @@ ggplot(data = df2, mapping = aes(x=reorder(line2, normal_wage, na.rm = TRUE), y=
 
 # note: better practice to reorder data, not aesthetics?
 # source: https://stackoverflow.com/questions/25230300/ggplot-and-reorder-not-working-even-with-stats
-# alternative, create sum_normal_wage first, then use that in ggplot()
 
+# alternative, create sum_normal_wage first, then use that in ggplot()
 df2 %>% 
     group_by(line2) %>% 
     summarize(sum_normal_wage = sum(normal_wage, na.rm = TRUE)) %>% 
@@ -193,6 +193,51 @@ df2 %>%
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
+# same for sum_dept_wage
+df2 %>% 
+    group_by(line2) %>% 
+    summarize(sum_dept_wage = sum(dept_wage, na.rm = TRUE)) %>% 
+    ggplot(aes(x=reorder(line2, sum_dept_wage), y=sum_dept_wage)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+# same for sum_OT_wage
+df2 %>% 
+    group_by(line2) %>% 
+    summarize(sum_OT_wage = sum(OT_wage, na.rm = TRUE)) %>% 
+    ggplot(aes(x=reorder(line2, sum_OT_wage), y=sum_OT_wage)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+# same for sum_actual_wage
+df2 %>% 
+    group_by(line2) %>% 
+    summarize(sum_actual_wage = sum(actual_wage, na.rm = TRUE)) %>% 
+    ggplot(aes(x=reorder(line2, sum_actual_wage), y=sum_actual_wage)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
+# reorder doesn't quite work 
+ggplot(data = df2, mapping = aes(x=reorder(line2, std_wage, na.rm = TRUE), y=std_wage)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+# now reorder works; sum_std_wage
+df2 %>% 
+    group_by(line2) %>% 
+    summarize(sum_std_wage = sum(std_wage, na.rm = TRUE)) %>% 
+    ggplot(aes(x=reorder(line2, sum_std_wage), y=sum_std_wage)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+# reorder work for sum_prod_total_kg
+df2 %>% 
+    group_by(line2) %>% 
+    summarize(sum_prod_total_kg = sum(prod_total_kg, na.rm = TRUE)) %>% 
+    ggplot(aes(x=reorder(line2, sum_prod_total_kg), y=sum_prod_total_kg)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
