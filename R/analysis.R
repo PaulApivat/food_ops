@@ -125,6 +125,11 @@ df2$line2 = ifelse(df2$line=='KW3 4/8ฟรีสและบรรจุ กะ
 df2$line2 = ifelse(df2$line=='KW3 5/8เต้าหู้ ลูกชิ้น Kamaboko', 'KW3 5/8 tofu kamaboko', df2$line2)
 df2$line2 = ifelse(df2$line=='KW3 8/8เบ็ดเตล็ด repack RTC  +  RTE  +กิมจิ', 'KW3 8/8 repack RTC_RTE_kimchi', df2$line2)
 df2$line2 = ifelse(df2$line=='6/10 ข้าวกล่อง Chill + Frozen KW1', '6/10 Rice Chill + Frozen KW1', df2$line2)
+df2$line2 = ifelse(df2$line=='1/10 เตรียมวัตถุดิบ ผัก  เนื้อ  ส่วนผสม  KW1', '1/10 raw material KW1', df2$line2)
+df2$line2 = ifelse(df2$line=='4/10 TV Dinner+ BBQ', '4/10 TV Dinner BBQ', df2$line2)
+df2$line2 = ifelse(df2$line=='KW3 1/8ข้าวกล่อง ห้องเตรียมวัตถุดิบ ส่วนผสม', 'KW3 1/8 rice raw material ingredients', df2$line2)
+df2$line2 = ifelse(df2$line=='10/10 เบ็ดเตล็ด K1', '10/10 misc K1', df2$line2)
+
 
 
 
