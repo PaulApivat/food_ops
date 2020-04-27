@@ -111,5 +111,23 @@ df2 <- add_column(df2, manager2 = NA, .after = "line2")
 # note: had to convert NA as logical to character first
 df2$line2 <- as.character(df2$line2)
 
-df2$line2 = ifelse(df$line=='8/10 กิมจิ', '8/10 kimchi', df2$line2)
+df2$line2 = ifelse(df2$line=='8/10 กิมจิ', '8/10 kimchi', df2$line2)
+df2$line2 = ifelse(df2$line=='9/10 ผลไม้', '9/10 fruit', df2$line2)
+df2$line2 = ifelse(df2$line=='2/10 ข้าวปั้น', '2/10 onikiri', df2$line2)
+df2$line2 = ifelse(df2$line=='3/10 Appetizer & ข้าวโพด & ไข่ตุ๋น', '3/10 appetizer', df2$line2)
+df2$line2 = ifelse(df2$line=='KW3 7/8กุ้ง ปลาแล่ ปลาหมึก  เทอร์โมฟอร์ม', 'KW3 7/8 shrimp squid', df2$line2)
+df2$line2 = ifelse(df2$line=='KW3 2/8ข้าวกล่อง ห้องปรุง', 'KW3 2/8 rice seasoning', df2$line2)
+df2$line2 = ifelse(df2$line=='KW3 3/8ข้าวกล่อง ห้องตักบรรจุ', 'KW3 3/8 rice utensils', df2$line2)
+df2$line2 = ifelse(df2$line=='7/10 ฟรีสและบรรจุ KW1', '7/10 freeze contain KW1', df2$line2)
+df2$line2 = ifelse(df2$line=='5/10 ขนมหวาน', '5/10 dessert', df2$line2)
+df2$line2 = ifelse(df2$line=='KW3 6/8ปูอัด', 'KW3 6/8 crab stick', df2$line2)
+df2$line2 = ifelse(df2$line=='KW3 4/8ฟรีสและบรรจุ กะกลางคืน KW3', 'KW3 4/8 freeze contain KW3', df2$line2)
+df2$line2 = ifelse(df2$line=='KW3 5/8เต้าหู้ ลูกชิ้น Kamaboko', 'KW3 5/8 tofu kamaboko', df2$line2)
+df2$line2 = ifelse(df2$line=='KW3 8/8เบ็ดเตล็ด repack RTC  +  RTE  +กิมจิ', 'KW3 8/8 repack RTC_RTE_kimchi', df2$line2)
+df2$line2 = ifelse(df2$line=='6/10 ข้าวกล่อง Chill + Frozen KW1', '6/10 Rice Chill + Frozen KW1', df2$line2)
+
+
+
+
+
 
