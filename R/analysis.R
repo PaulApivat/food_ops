@@ -153,9 +153,6 @@ df2$manager2 = ifelse(df2$manager=='กัญญารัตน์ (แมว)',
 
 
 
-
-
-
 #### Filter using dplyr::filter and grepl
 
 ## Filter for "KW3" in column line2
@@ -168,6 +165,32 @@ View(dplyr::filter(df2, !grepl("KW3", line2)))
 # note: 'jaloowun' is paired with several managers
 View(dplyr::filter(df2, grepl("jaloowun", manager2)))
 
+
+###### EDA: Basic Plots #######
+
+# basic bar plot of production lines (line2) by normal_wages
+# note: issues employing reorder() in aes()
+
+# not quite reorder
+ggplot(data = df2, mapping = aes(x=reorder(line2, normal_wage), y=normal_wage)) 
++ geom_bar(stat = 'identity') 
++ theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+# add na.rm = TRUE improves somewhat
+ggplot(data = df2, mapping = aes(x=reorder(line2, normal_wage, na.rm = TRUE), y=normal_wage)) 
++ geom_bar(stat = 'identity') 
++ theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+# note: better practice to reorder data, not aesthetics?
+# source: https://stackoverflow.com/questions/25230300/ggplot-and-reorder-not-working-even-with-stats
+# alternative, create sum_normal_wage first, then use that in ggplot()
+
+df2 %>% 
+    group_by(line2) %>% 
+    summarize(sum_normal_wage = sum(normal_wage, na.rm = TRUE)) %>% 
+    ggplot(aes(x=reorder(line2, sum_normal_wage), y=sum_normal_wage)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
 
