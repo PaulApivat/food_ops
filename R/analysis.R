@@ -31,17 +31,17 @@ ggplot(data = df, mapping = aes(x=Timestamp, y=df$`ยอดผลิต (kg)`))
 2	วันที่                                      # date
 3	Line ผลิต                                 # line
 4	คนดูแล                                    # manager
-5	จำนวนคนเต็ม (คน) ตามสังกัด HR               # empl_total
-6	คนมาทำงานต่อวัน (คน) ตามสังกัด HR            # empl_daily
+5	จำนวนคนเต็ม (คน) ตามสังกัด HR               # empl_total            (sum all + sum by line over time)
+6	คนมาทำงานต่อวัน (คน) ตามสังกัด HR            # empl_daily            (sum all + sum by line over time)
 7	ส่งออกต่างแผนก (คน) (แผนกที่1)               # dept_exch
-8	ค่าแรงปกติ (บาท) ตามสังกัด HR                # normal_wage
+8	ค่าแรงปกติ (บาท) ตามสังกัด HR                # normal_wage           (sum all + sum by line)
 9	รับค่าแรงต่างแผนก (บาท)                     # dept_wage
-10	จำนวนชั่วโมง OT ที่ขออนุมัติ (ชั่วโมง)            # OT_total
-11	ค่าแรง OT (บาท) ของแผนกตัวเอง              # OT_wage
-12	ค่าแรงรวมผลิต Actual (บาท)                 # actual_wage
-13	ค่าแรงรวมผลิต STD (บาท)                    # std_wage
-14	ยอดผลิต (kg)                              # prod_total_kg
-15	ยอดผลิต (ถาด)                             # prod_total_tray
+10	จำนวนชั่วโมง OT ที่ขออนุมัติ (ชั่วโมง)            # OT_total            
+11	ค่าแรง OT (บาท) ของแผนกตัวเอง              # OT_wage            (sum by line over time)
+12	ค่าแรงรวมผลิต Actual (บาท)                 # actual_wage        (sum by line over time)
+13	ค่าแรงรวมผลิต STD (บาท)                    # std_wage           (sum by line over time)
+14	ยอดผลิต (kg)                              # prod_total_kg      (sum by line over time)
+15	ยอดผลิต (ถาด)                             # prod_total_tray    (sum by line over time)
 16	โรงงาน                                   # factory
 17	หมายเหตุ: กดเลือกในเวรหยุดของไลน์ผลิต           # NA
 18	ส่งไปแผนก (แผนกที่1)                          # NA 
@@ -56,10 +56,10 @@ ggplot(data = df, mapping = aes(x=Timestamp, y=df$`ยอดผลิต (kg)`))
 27	%OT                                      # OT_percent
 28	ค่าแรง STD/ยอดผลิต ( บาทต่อKG)              # std_wage_per_prod
 29	ค่าแรงรวมผลิต Actual/ยอดผลิต ( บาทต่อKG)     # actual_wage_per_prod
-30	ใช้ค่าแรงน้อยกว่า STD                        # wage_below_std
-31	ใช้ค่าแรงมากกว่า STD                        # wage_above_std
+30	ใช้ค่าแรงน้อยกว่า STD                        # wage_below_std           (erase)
+31	ใช้ค่าแรงมากกว่า STD                        # wage_above_std           (erase)
 32	Cal %OT                                  # cal_OT_percent
-33	Cal ค่าแรง vs.STD (น้อยกว่า+/มากกว่า -)      # cal_wage_vs_std
+33	Cal ค่าแรง vs.STD (น้อยกว่า+/มากกว่า -)      # cal_wage_vs_std          (*key sum by line over time)
 34	Cal ค่าแรง STD/ยอดผลิต (บาท/KG)              # NA
 35	Cal ค่าแรง Actual/ยอดผลิต (บาท/KG)           # NA
 
