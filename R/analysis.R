@@ -422,6 +422,17 @@ std_wage_line2 <- df2 %>%
     + geom_bar(stat = 'identity') 
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
+########## prod_total_kg      (sum by line over time)
+########## ยอดผลิต (kg)                              
+prod_total_kg_line2 <- df2 %>% 
+    group_by(line2, factory) %>% 
+    summarize(sum_prod_total_kg = sum(prod_total_kg, na.rm = TRUE)) %>% 
+    arrange(desc(sum_prod_total_kg)) %>% 
+    ggplot(aes(x=reorder(line2, sum_prod_total_kg), y=sum_prod_total_kg, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
 
 
 
