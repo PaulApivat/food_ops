@@ -546,6 +546,8 @@ colnames(df3)[16] <- 'factory'
 df3 <- add_column(df3, line2 = NA, .after = "manager")
 df3 <- add_column(df3, manager2 = NA, .after = "line2")
 
+
+### STep 2 
 # convert thai characters in line (& manager) into english for line2, manager2
 # most manual step, need to write a function to do this
 df3$line2 = ifelse(df3$line=='8/10 กิมจิ', '8/10 kimchi', df3$line2)
@@ -574,6 +576,8 @@ df3$line2 = ifelse(df3$line=='10/10 เบ็ดเตล็ด K1', '10/10 misc
 df3 <- df3[-c(346:50800),]
 
 
+
+### STep 3
 # create actual_wage_per_kg (formerly new_column), std_wage_per_kg (formerly new_column2)
 
 # actual_wage_per_kg
@@ -584,5 +588,52 @@ df3$actual_wage <- as.numeric(levels(df4$actual_wage))[df4$actual_wage]
 df3$std_wage <- as.numeric(levels(df4$std_wage))[df4$std_wage]
 
 
-
 df3 <- df3 %>% mutate(actual_wage_per_kg = actual_wage / prod_total_kg)
+df3 <- df3 %>% mutate(std_wage_per_kg = std_wage / prod_total_kg)
+
+#### Step 4
+
+kimchi <- df3 %>% 
+    filter(line2=='8/10 kimchi') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 8/10 Kimchi')
+
+
+fruit <- df3 %>% 
+    filter(line2=='9/10 fruit') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 9/10 Fruit')
+
+dessert <- df3 %>% 
+    filter(line2=='5/10 dessert') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg'), size=5) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg'), size=5) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 5/10 Dessert')
+
+Raw_Mat <- df3 %>% 
+    filter(line2=='1/10 raw material KW1') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 1/10 Raw Material KW1')
+
+crab_sticks <- df3 %>% 
+    filter(line2=='KW3 6/8 crab stick') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: KW3 6/8 Crab Stick')
+
+# patchwork
+kimchi + fruit + dessert + Raw_Mat + crab_sticks + plot_layout(ncol = 3)
+
