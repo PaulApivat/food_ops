@@ -454,6 +454,19 @@ cal_wage_vs_std_line2 <- df2 %>%
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
+# patchwork layout
+library(patchwork)
+
+empl_total_line2 
++ empl_daily_line2 
++ normal_wage_line2 
++ OT_wage_line2 
++ actual_wage_line2 
++ std_wage_line2 
++ prod_total_kg_line2 
++ prod_total_tray_line2 
++ cal_wage_vs_std_line2 
++ plot_layout(ncol = 3)
 
 
 
