@@ -356,6 +356,18 @@ ggplot(data = sum_empl_total_df, mapping = aes(x=reorder(line2, sum_empl_total),
 + geom_bar(stat = 'identity') 
 + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
+# Some basic bar plot, fill=factory (using original df2 data frame)
+empl_total_line2 <- df2 %>% 
+    # group_by need to include factory to also use factory in 'fill'
+    group_by(line2, factory) %>% 
+    summarize(sum_empl_total = sum(empl_total, na.rm = TRUE)) %>% 
+    arrange(desc(sum_empl_total)) %>% 
+    ggplot(aes(x=reorder(line2, sum_empl_total), y=sum_empl_total, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+
 
 
 
