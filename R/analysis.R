@@ -380,6 +380,17 @@ empl_daily_line2 <- df2 %>%
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
+######## normal_wage           (sum all + sum by line)
+######## ค่าแรงปกติ (บาท) ตามสังกัด HR 
+normal_wage_line2 <- df2 %>% 
+    group_by(line2, factory) %>% 
+    summarize(sum_normal_wage = sum(normal_wage, na.rm = TRUE)) %>% 
+    arrange(desc(sum_normal_wage)) %>% 
+    ggplot(aes(x=reorder(line2, sum_normal_wage), y=sum_normal_wage, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
 
 
 
