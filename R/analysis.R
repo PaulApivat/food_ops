@@ -575,3 +575,14 @@ df3 <- df3[-c(346:50800),]
 
 
 # create actual_wage_per_kg (formerly new_column), std_wage_per_kg (formerly new_column2)
+
+# actual_wage_per_kg
+# error, wrong data type, need to change factor to numeric
+# WARNING: results in implicit coercion (cannot simply use as.numeric())
+# Work-around: re-save file to df4 (prepare data shape to match df3)
+df3$actual_wage <- as.numeric(levels(df4$actual_wage))[df4$actual_wage]
+df3$std_wage <- as.numeric(levels(df4$std_wage))[df4$std_wage]
+
+
+
+df3 <- df3 %>% mutate(actual_wage_per_kg = actual_wage / prod_total_kg)
