@@ -468,10 +468,34 @@ empl_total_line2
 + cal_wage_vs_std_line2 
 + plot_layout(ncol = 3)
 
+###### Pim Feedback round 2
+
+# new_colum
+df2 <- df2 %>% mutate(new_colum = actual_wage / prod_total_kg)
+colnames(df2)[38] <- "new_column"
+
+# another chart
+df2 %>% group_by(line2, factory) %>% 
+    summarize(sum_new_colum = sum(new_colum, na.rm = TRUE)) %>% 
+    arrange(desc(sum_new_colum)) %>% 
+    ggplot(aes(x=reorder(line2, sum_new_colum), y=sum_new_colum, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
+# new_column2
+df2 <- df2 %>% mutate(new_column2 = std_wage / prod_total_kg)
 
+# objective compare new_colum vs new_column2
+# change line2 into factor
+# ERROR: geom_path: Each group consists of only one observation. Do you need to adjust the group aesthetic?
+df2 %>% 
+    filter(line2=='9/10 fruit') %>% 
+    # add group = 1 gets rid of error geom_path
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=new_column, colour = 'new_column')) 
+    + geom_line(aes(y=new_column2, colour = 'new_column2'))
 
-
+    
 
 
