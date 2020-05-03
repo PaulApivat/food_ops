@@ -496,6 +496,9 @@ df2 %>%
     + geom_line(aes(y=new_column, colour = 'new_column')) 
     + geom_line(aes(y=new_column2, colour = 'new_column2'))
 
+## new_column (red) --> actual_wage / prod_total_kg
+## new_column2 (green) --> std_wage / prod_total_kg
+
 # 8/10 kimchi
 df2 %>% filter(line2=='8/10 kimchi') %>% ggplot(aes(date, group = 1)) + geom_line(aes(y=new_column, colour = 'new_column')) + geom_line(aes(y=new_column2, colour = 'new_column2'))
 
@@ -507,6 +510,13 @@ df2 %>% filter(line2=='1/10 raw material KW1') %>% ggplot(aes(date, group = 1)) 
 
 # 2/10 onikiri
 df2 %>% filter(line2=='2/10 onikiri') %>% ggplot(aes(date, group = 1)) + geom_line(aes(y=new_column, colour = 'new_column')) + geom_line(aes(y=new_column2, colour = 'new_column2'))
+
+# TV Dinner BBQ
+df2 %>% 
+    filter(line2=='4/10 TV Dinner BBQ') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=new_column, colour = 'new_column', size=20)) 
+    + geom_line(aes(y=new_column2, colour = 'new_column2', size=20))
 
 
 
