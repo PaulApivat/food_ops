@@ -520,11 +520,34 @@ df2 %>%
 
 
 ###### Next step: Comparison of new_column vs new_column2 by production line, April 13 - 30th
-# Step 1: Ref Data Dictionary - create: line2, actual_wage, std_wage, prod_total_kg, 
+# Step 1: Ref Data Dictionary - create: line2, actual_wage, std_wage, prod_total_kg, factory
 # Step 2: Change all production line(s) from Thai to English
 # Step 3: create actual_wage_per_kg, std_wage_per_kg
 # Step 4: create comparison line charts for each production line
 
+# Step 1: 
+df3 <- read.csv("food_ops.csv")
+
+# survey column names
+names(df3)
+# change column names date, line, manager, actual_wage, std_wage, factory, 
+colnames(df3)[2] <- 'date'
+colnames(df3)[3] <- 'line'
+colnames(df3)[4] <- 'manager'
+colnames(df3)[12] <- 'actual_wage'
+colnames(df3)[13] <- 'std_wage'
+colnames(df3)[14] <- 'prod_total_kg'
+colnames(df3)[15] <- 'prod_total_tray'
+colnames(df3)[16] <- 'factory'
+
+# create four new columns: line2, manager2, 
+
+# insert column using tibble package (add_column()) 
+df3 <- add_column(df3, line2 = NA, .after = "manager")
+df3 <- add_column(df3, manager2 = NA, .after = "line2")
+
+# convert thai characters in line & manager into english for line2, manager2
 
 
 
+# create actual_wage_per_kg (formerly new_column), std_wage_per_kg (formerly new_column2)
