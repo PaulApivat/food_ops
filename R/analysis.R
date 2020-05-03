@@ -432,6 +432,17 @@ prod_total_kg_line2 <- df2 %>%
     + geom_bar(stat = 'identity') 
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
+########## prod_total_tray    (sum by line over time)
+########## ยอดผลิต (ถาด)                             
+prod_total_tray_line2 <- df2 %>% 
+    group_by(line2, factory) %>% 
+    summarize(sum_prod_total_tray = sum(prod_total_tray, na.rm = TRUE)) %>% 
+    arrange(desc(sum_prod_total_tray)) %>% 
+    ggplot(aes(x=reorder(line2, sum_prod_total_tray), y=sum_prod_total_tray, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
 
 
 
