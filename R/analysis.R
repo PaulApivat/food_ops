@@ -333,6 +333,7 @@ OT_percent_by_line2
 ##################### Post Feedback from Pim #######################
 
 ##### empl_total            (sum all + sum by line over time)
+##### จำนวนคนเต็ม (คน) ตามสังกัด HR 
 
 # change empl_total (chr) to numeric
 df2$empl_total <- as.numeric(df2$empl_total)
@@ -366,6 +367,17 @@ empl_total_line2 <- df2 %>%
     + geom_bar(stat = 'identity') 
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
+
+####### empl_daily            (sum all + sum by line over time)
+####### คนมาทำงานต่อวัน (คน) ตามสังกัด HR
+empl_daily_line2 <- df2 %>% 
+    # group_by need to include factory to also use factory in 'fill'
+    group_by(line2, factory) %>% 
+    summarize(sum_empl_daily = sum(empl_daily, na.rm = TRUE)) %>% 
+    arrange(desc(sum_empl_daily)) %>% 
+    ggplot(aes(x=reorder(line2, sum_empl_daily), y=sum_empl_daily, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
 
