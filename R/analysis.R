@@ -546,8 +546,32 @@ colnames(df3)[16] <- 'factory'
 df3 <- add_column(df3, line2 = NA, .after = "manager")
 df3 <- add_column(df3, manager2 = NA, .after = "line2")
 
-# convert thai characters in line & manager into english for line2, manager2
+# convert thai characters in line (& manager) into english for line2, manager2
+# most manual step, need to write a function to do this
+df3$line2 = ifelse(df3$line=='8/10 กิมจิ', '8/10 kimchi', df3$line2)
 
+df3$line2 = ifelse(df3$line=='9/10 ผลไม้', '9/10 fruit', df3$line2)
+df3$line2 = ifelse(df3$line=='2/10 ข้าวปั้น', '2/10 onikiri', df3$line2)
+df3$line2 = ifelse(df3$line=='3/10 Appetizer & ข้าวโพด & ไข่ตุ๋น', '3/10 appetizer', df3$line2)
+df3$line2 = ifelse(df3$line=='KW3 7/8กุ้ง ปลาแล่ ปลาหมึก  เทอร์โมฟอร์ม', 'KW3 7/8 shrimp squid', df3$line2)
+df3$line2 = ifelse(df3$line=='KW3 2/8ข้าวกล่อง ห้องปรุง', 'KW3 2/8 rice seasoning', df3$line2)
+df3$line2 = ifelse(df3$line=='KW3 3/8ข้าวกล่อง ห้องตักบรรจุ', 'KW3 3/8 rice utensils', df3$line2)
+df3$line2 = ifelse(df3$line=='7/10 ฟรีสและบรรจุ KW1', '7/10 freeze contain KW1', df3$line2)
+df3$line2 = ifelse(df3$line=='5/10 ขนมหวาน', '5/10 dessert', df3$line2)
+df3$line2 = ifelse(df3$line=='KW3 6/8ปูอัด', 'KW3 6/8 crab stick', df3$line2)
+df3$line2 = ifelse(df3$line=='KW3 4/8ฟรีสและบรรจุ กะกลางคืน KW3', 'KW3 4/8 freeze contain KW3', df3$line2)
+df3$line2 = ifelse(df3$line=='KW3 5/8เต้าหู้ ลูกชิ้น Kamaboko', 'KW3 5/8 tofu kamaboko', df3$line2)
+df3$line2 = ifelse(df3$line=='KW3 8/8เบ็ดเตล็ด repack RTC  +  RTE  +กิมจิ', 'KW3 8/8 repack RTC_RTE_kimchi', df3$line2)
+df3$line2 = ifelse(df3$line=='6/10 ข้าวกล่อง Chill + Frozen KW1', '6/10 Rice Chill + Frozen KW1', df3$line2)
+df3$line2 = ifelse(df3$line=='1/10 เตรียมวัตถุดิบ ผัก  เนื้อ  ส่วนผสม  KW1', '1/10 raw material KW1', df3$line2)
+df3$line2 = ifelse(df3$line=='4/10 TV Dinner+ BBQ', '4/10 TV Dinner BBQ', df3$line2)
+df3$line2 = ifelse(df3$line=='KW3 1/8ข้าวกล่อง ห้องเตรียมวัตถุดิบ ส่วนผสม', 'KW3 1/8 rice raw material ingredients', df3$line2)
+df3$line2 = ifelse(df3$line=='10/10 เบ็ดเตล็ด K1', '10/10 misc K1', df3$line2)
+
+# delete after rows After April 30th: 346 - 50,800
+# non-use empty rows slow down calculations
+# delete 346 -> 50,800
+df3 <- df3[-c(346:50800),]
 
 
 # create actual_wage_per_kg (formerly new_column), std_wage_per_kg (formerly new_column2)
