@@ -519,5 +519,12 @@ df2 %>%
     + geom_line(aes(y=new_column2, colour = 'new_column2', size=20))
 
 
+###### Next step: Comparison of new_column vs new_column2 by production line, April 13 - 30th
+# Step 1: Ref Data Dictionary - create: line2, actual_wage, std_wage, prod_total_kg, 
+# Step 2: Change all production line(s) from Thai to English
+# Step 3: create actual_wage_per_kg, std_wage_per_kg
+# Step 4: create comparison line charts for each production line
+
+
 
 
