@@ -330,3 +330,27 @@ OT_percent_by_line2
 + cal_wage_vs_std_by_line2 
 + plot_layout(ncol = 3)
 
+##################### Post Feedback from Pim #######################
+
+##### empl_total            (sum all + sum by line over time)
+
+# change empl_total (chr) to numeric
+df2$empl_total <- as.numeric(df2$empl_total)
+
+# sum_empl_total (248)
+df2 %>% filter(line2=='8/10 kimchi') %>% summarize(sum_empl_total = sum(empl_total))
+
+# instead of doing line-by-line, need to do group_by(line2), then sum_all_empl_total
+# deal with NA
+df2 %>% group_by(line2) %>% summarize(sum_empl_total = sum(empl_total, na.rm = TRUE))
+df2 %>% group_by(line2) %>% summarize(sum_empl_total = sum(empl_total, na.rm = TRUE)) %>% arrange(desc(sum_empl_total))
+
+sum_empl_total_df <- df2 %>% 
+                    group_by(line2) %>% 
+                    summarize(sum_empl_total = sum(empl_total, na.rm = TRUE)) %>% 
+                    arrange(desc(sum_empl_total))
+
+
+
+
+
