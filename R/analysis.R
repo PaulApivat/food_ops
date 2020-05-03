@@ -345,10 +345,16 @@ df2 %>% filter(line2=='8/10 kimchi') %>% summarize(sum_empl_total = sum(empl_tot
 df2 %>% group_by(line2) %>% summarize(sum_empl_total = sum(empl_total, na.rm = TRUE))
 df2 %>% group_by(line2) %>% summarize(sum_empl_total = sum(empl_total, na.rm = TRUE)) %>% arrange(desc(sum_empl_total))
 
+# new data frame of just empl_total summed by line (across time)
 sum_empl_total_df <- df2 %>% 
                     group_by(line2) %>% 
                     summarize(sum_empl_total = sum(empl_total, na.rm = TRUE)) %>% 
                     arrange(desc(sum_empl_total))
+
+# basic bar plot
+ggplot(data = sum_empl_total_df, mapping = aes(x=reorder(line2, sum_empl_total), y=sum_empl_total)) 
++ geom_bar(stat = 'identity') 
++ theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
 
