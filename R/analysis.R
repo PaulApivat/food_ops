@@ -443,6 +443,17 @@ prod_total_tray_line2 <- df2 %>%
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
 
+########### cal_wage_vs_std          (*key sum by line over time)
+########## Cal ค่าแรง vs.STD (น้อยกว่า+/มากกว่า -)      
+cal_wage_vs_std_line2 <- df2 %>% 
+    group_by(line2, factory) %>% 
+    summarize(sum_cal_wage_vs_std = sum(cal_wage_vs_std, na.rm = TRUE)) %>% 
+    arrange(desc(sum_cal_wage_vs_std)) %>% 
+    ggplot(aes(x=reorder(line2, sum_cal_wage_vs_std), y=sum_cal_wage_vs_std, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
 
 
 
