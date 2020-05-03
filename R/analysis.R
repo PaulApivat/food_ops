@@ -390,6 +390,40 @@ normal_wage_line2 <- df2 %>%
     + geom_bar(stat = 'identity') 
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
 
+######## OT_wage            (sum by line over time)
+######## ค่าแรง OT (บาท) ของแผนกตัวเอง              
+OT_wage_line2 <- df2 %>% 
+    group_by(line2, factory) %>% 
+    summarize(sum_OT_wage = sum(OT_wage, na.rm = TRUE)) %>% 
+    arrange(desc(sum_OT_wage)) %>% 
+    ggplot(aes(x=reorder(line2, sum_OT_wage), y=sum_OT_wage, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+######### actual_wage        (sum by line over time)
+######### ค่าแรงรวมผลิต Actual (บาท)                 
+actual_wage_line2 <- df2 %>% 
+    group_by(line2, factory) %>% 
+    summarize(sum_actual_wage = sum(actual_wage, na.rm = TRUE)) %>% 
+    arrange(desc(sum_actual_wage)) %>% 
+    ggplot(aes(x=reorder(line2, sum_actual_wage), y=sum_actual_wage, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+########## std_wage           (sum by line over time)
+########## ค่าแรงรวมผลิต STD (บาท)                    
+std_wage_line2 <- df2 %>% 
+    group_by(line2, factory) %>% 
+    summarize(sum_std_wage = sum(std_wage, na.rm = TRUE)) %>% 
+    arrange(desc(sum_std_wage)) %>% 
+    ggplot(aes(x=reorder(line2, sum_std_wage), y=sum_std_wage, fill=factory)) 
+    + geom_bar(stat = 'identity') 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black'))
+
+
+
 
 
 
