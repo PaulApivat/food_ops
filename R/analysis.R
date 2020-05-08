@@ -2,6 +2,7 @@
 # RStudio Version 1.2.5042
 
 library(tidyverse)
+library(patchwork)
 
 # load data
 df <- read_csv("food_data.csv")
@@ -634,6 +635,26 @@ crab_sticks <- df3 %>%
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
     + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: KW3 6/8 Crab Stick')
 
+onikiri <- df3 %>% 
+    filter(line2=='2/10 onikiri') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 2/10 onikiri')
+
+
+appetizer <- df3 %>% 
+    filter(line2=='3/10 appetizer') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 3/10 appetizer')
+
+
+
+
 # patchwork
-kimchi + fruit + dessert + Raw_Mat + crab_sticks + plot_layout(ncol = 3)
+kimchi + fruit + dessert + Raw_Mat + crab_sticks + onikiri + appetizer + plot_layout(ncol = 3)
 
