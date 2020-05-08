@@ -673,6 +673,8 @@ rice_seasoning <- df3 %>%
 # patchwork
 kimchi + fruit + dessert + Raw_Mat + crab_sticks + onikiri + appetizer + shrimp_squid + rice_seasoning + plot_layout(ncol = 3)
 
+
+
 rice_utensils <- df3 %>% 
     filter(line2=='KW3 3/8 rice utensils') %>% 
     ggplot(aes(date, group = 1)) 
@@ -720,4 +722,7 @@ tv_dinner <- df3 %>%
     + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
     + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
     + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 4/10 TV Dinner BBQ')
+
+# second patchwork
+rice_utensils + freeze_contain + tofu_kamaboko + repack_rtc + rice_chill + tv_dinner + plot_layout(ncol = 3)
 
