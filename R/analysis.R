@@ -653,8 +653,71 @@ appetizer <- df3 %>%
     + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 3/10 appetizer')
 
 
+shrimp_squid <- df3 %>% 
+    filter(line2=='KW3 7/8 shrimp squid') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: KW3 7/8 shrimp squid')
 
+
+rice_seasoning <- df3 %>% 
+    filter(line2=='KW3 2/8 rice seasoning') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: KW3 2/8 rice seasoning')
 
 # patchwork
-kimchi + fruit + dessert + Raw_Mat + crab_sticks + onikiri + appetizer + plot_layout(ncol = 3)
+kimchi + fruit + dessert + Raw_Mat + crab_sticks + onikiri + appetizer + shrimp_squid + rice_seasoning + plot_layout(ncol = 3)
+
+rice_utensils <- df3 %>% 
+    filter(line2=='KW3 3/8 rice utensils') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: KW3 3/8 rice utensils')
+
+freeze_contain <- df3 %>% 
+    filter(line2=='7/10 freeze contain KW1') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 7/10 freeze contain KW1')
+
+tofu_kamaboko <- df3 %>% 
+    filter(line2=='KW3 5/8 tofu kamaboko') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: KW3 5/8 tofu kamaboko')
+
+repack_rtc <- df3 %>% 
+    filter(line2=='KW3 8/8 repack RTC_RTE_kimchi') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: KW3 8/8 repack RTC_RTE_kimchi')
+
+rice_chill <- df3 %>% 
+    filter(line2=='6/10 Rice Chill + Frozen KW1') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 6/10 Rice Chill + Frozen KW1')
+
+tv_dinner <- df3 %>% 
+    filter(line2=='4/10 TV Dinner BBQ') %>% 
+    ggplot(aes(date, group = 1)) 
+    + geom_line(aes(y=actual_wage_per_kg, colour = 'actual_wage_per_kg')) 
+    + geom_line(aes(y=std_wage_per_kg, colour = 'std_wage_per_kg')) 
+    + theme(axis.text.x = element_text(angle = 45, hjust = 1, color = 'black')) 
+    + labs(y = 'Actual Wages per KG Produced', title = 'Production Line: 4/10 TV Dinner BBQ')
 
